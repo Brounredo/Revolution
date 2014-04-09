@@ -8,35 +8,35 @@ import random  # Генератор случайных чисел
 
 # Интерактивная инициализация
 Vars.is_lose = random.choice([True, False])  # Выиграет игрок или проиграет
-print("")  # Пустая строка
-print("Revolution v1.0")  # Вывод "Revolution v1.0"
-print("-----")  # Разделитель
-print("Введите своё имя: ", end='')  # Запрос имени
-Vars.MyPlayer.name = input()  # Присваивание значения имени свойству "name" объекта "MyPlayer"
-print("Введите свой возраст (от 14 до 50 лет): ", end='')  # Запрос возраста
-age_temp = int(input())  # Присваивание переменной "age_temp" значения возраста
-if age_temp < 14:  # Если
+print("")
+print("Revolution v1.0")
+print("-----")
+print("Введите своё имя: ", end='')
+Vars.MyPlayer.name = input()  # Имя игрока
+print("Введите свой возраст (от 14 до 50 лет): ", end='')
+age_temp = int(input())
+if age_temp < 14:
     print("Маленький ещё страной управлять!")
     sys.exit()
 elif age_temp > 50:
     print("Староват уже.")
     sys.exit()
-Vars.MyPlayer.age = int(age_temp)
-
-Vars.MyCountry = random.choice(AllCountries.allcountries)
+Vars.MyPlayer.age = int(age_temp)  # Возраст игрока
+Vars.MyCountry = random.choice(AllCountries.allcountries)  # Страна игрока
 print("Ваша страна - ", Vars.MyCountry.name)
-Vars.MyPlayer.place = Vars.MyCountry.capital
+Vars.MyPlayer.place = Vars.MyCountry.capital  # Местоположение игрока
 print("Введите количество ботов: ", end='')
-bots = int(input())
-for j in range(bots):
+bots = int(input())  # Количество ботов
+for j in range(bots):  # Добавление ботов
     Vars.countries.append(random.choice(AllCountries.allcountries))
-for q in range(5):
+for q in range(5):  # "Созыв" министров
     Vars.MyCountry.min_now[q] = Names.random_name()
-Functions.gen_gamemap()
+Functions.gen_gamemap()  # Генерация карты
 
 
 # Цикл игры
 while 1:
+    # Вывод основной информации
     print("")
     print("Год:", Vars.year)
     print("Ваш возраст:", Vars.MyPlayer.age)
@@ -48,12 +48,12 @@ while 1:
     print("Новости:", Vars.news)
     print("-----")
     print("Для помощи напишите 'помощь' (без кавычек)")
-    print("Введите команду: ", end='')
-    command = input()
 
+    print("Введите команду: ", end='')
+    # Ввод и обработка команды
+    command = input()  # Воод команды
     if command == "конец хода":
         Functions.next_year()
-
     elif command == "министры":
         print("")
         print("Кабинет министров:")
